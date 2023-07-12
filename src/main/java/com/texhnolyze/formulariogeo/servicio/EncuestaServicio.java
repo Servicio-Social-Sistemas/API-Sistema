@@ -38,4 +38,10 @@ public class EncuestaServicio {
                 new RuntimeException("No se encontro la encuesta con id: "+id));
     }
 
+    public List<PosicionGeografica> findAllPosicionGeografica(){
+        return encuestaRespositorio.findAll().stream()
+                .map(Encuesta::getPosicionGeografica)
+                .toList();
+    }
+
 }
