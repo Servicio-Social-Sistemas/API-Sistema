@@ -1,6 +1,5 @@
 package com.texhnolyze.formulariogeo.controlador;
 
-import com.texhnolyze.formulariogeo.dto.EncuestaDto;
 import com.texhnolyze.formulariogeo.modelo.Encuesta;
 import com.texhnolyze.formulariogeo.servicio.EncuestaServicio;
 import org.springframework.http.ResponseEntity;
@@ -10,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/encuesta")
+@RequestMapping("/api/v1/encuesta")
 public class EncuestaControlador {
 
     private final EncuestaServicio encuestaServicio;
