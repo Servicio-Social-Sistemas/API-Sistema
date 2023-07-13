@@ -44,4 +44,8 @@ public class EncuestaServicio {
                 .toList();
     }
 
+    public List<Encuesta> findAll(){
+        return encuestaRespositorio.findAll();
+    }
+
 }
