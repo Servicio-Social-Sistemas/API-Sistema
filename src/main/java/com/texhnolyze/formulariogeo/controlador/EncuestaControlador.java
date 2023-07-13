@@ -23,7 +23,7 @@ public class EncuestaControlador {
         return ResponseEntity.ok("Encuesta agregada");
     }
 
-    @GetMapping("/all")
+    @GetMapping
     public ResponseEntity<List<Encuesta>> todasEncuestas() {
         return ResponseEntity.ok(encuestaServicio.findAll());
     }
