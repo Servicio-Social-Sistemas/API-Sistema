@@ -46,6 +46,28 @@ public class EncuestaServicio {
 
     public List<Encuesta> findAll(){
         return encuestaRespositorio.findAll();
+=======
+    public Encuesta getEncuestadoById(Long id) {
+        return encuestaRespositorio.findById(id).orElseThrow(()->
+                new RuntimeException("No se encontro la encuesta con id: "+id));
+    }
+
+    public void updateEncuestadoById(Long id, Encuesta encuestado) {
+         Encuesta encuesta = encuestaRespositorio.findById(id).orElseThrow(()->
+                new RuntimeException("No se encontro la encuesta con id: "+id));
+         Encuesta encuestaActualizada =  Encuesta.builder()
+                    .id(encuesta.getId())
+                    .preguntas(encuestado.getPreguntas())
+                    .build();
+
+         encuestaRespositorio.save(encuestaActualizada);
+
+    }
+
+    public void deleteEncuestado(Long id) {
+        if (encuestaRespositorio.findById(id).isPresent()) {
+            encuestaRespositorio.deleteById(id);
+        }
     }
 
 }
