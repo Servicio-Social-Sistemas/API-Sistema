@@ -44,9 +44,9 @@ public class EncuestaServicio {
                 .toList();
     }
 
-    public List<Encuesta> findAll(){
+    public List<Encuesta> findAll() {
         return encuestaRespositorio.findAll();
-=======
+    }
     public Encuesta getEncuestadoById(Long id) {
         return encuestaRespositorio.findById(id).orElseThrow(()->
                 new RuntimeException("No se encontro la encuesta con id: "+id));

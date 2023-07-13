@@ -24,9 +24,9 @@ public class EncuestaControlador {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<Encuesta>> todasEncuestas(){
+    public ResponseEntity<List<Encuesta>> todasEncuestas() {
         return ResponseEntity.ok(encuestaServicio.findAll());
-
+    }
     @GetMapping("/{id}")
     public ResponseEntity <Encuesta> getEncuestadoById(@PathVariable("id") Long id) {
         return ResponseEntity.ok(encuestaServicio.getEncuestadoById(id));
