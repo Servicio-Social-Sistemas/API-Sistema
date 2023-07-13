@@ -1,0 +1,4 @@
+# Ignorar archivos y directorios
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/*.jar
