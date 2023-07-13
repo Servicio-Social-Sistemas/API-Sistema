@@ -5,6 +5,8 @@ import com.texhnolyze.formulariogeo.servicio.EncuestaServicio;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/v1/encuesta")
 public class EncuestaControlador {
@@ -21,6 +23,10 @@ public class EncuestaControlador {
         return ResponseEntity.ok("Encuesta agregada");
     }
 
+    @GetMapping("/all")
+    public ResponseEntity<List<Encuesta>> todasEncuestas(){
+        return ResponseEntity.ok(encuestaServicio.findAll());
+
     @GetMapping("/{id}")
     public ResponseEntity <Encuesta> getEncuestadoById(@PathVariable("id") Long id) {
         return ResponseEntity.ok(encuestaServicio.getEncuestadoById(id));
@@ -36,6 +42,7 @@ public class EncuestaControlador {
     public ResponseEntity<String> deleteEncuestado(@PathVariable("id") Long id) {
         encuestaServicio.deleteEncuestado(id);
         return ResponseEntity.ok("Encuesta eliminada");
+
     }
 
 }
