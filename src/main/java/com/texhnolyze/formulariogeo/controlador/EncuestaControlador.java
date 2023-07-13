@@ -3,10 +3,9 @@ package com.texhnolyze.formulariogeo.controlador;
 import com.texhnolyze.formulariogeo.modelo.Encuesta;
 import com.texhnolyze.formulariogeo.servicio.EncuestaServicio;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/encuesta")
@@ -22,6 +21,11 @@ public class EncuestaControlador {
     public ResponseEntity<String> addEncuesta(@RequestBody Encuesta encuesta){
         encuestaServicio.save(encuesta);
         return ResponseEntity.ok("Encuesta agregada");
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<Encuesta>> todasEncuestas(){
+        return ResponseEntity.ok(encuestaServicio.findAll());
     }
 
 }
