@@ -2,6 +2,7 @@ package com.texhnolyze.formulariogeo.controlador;
 
 import com.texhnolyze.formulariogeo.modelo.Encuesta;
 import com.texhnolyze.formulariogeo.servicio.EncuestaServicio;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +19,7 @@ public class EncuestaControlador {
     }
 
     @PostMapping
-    public ResponseEntity<String> addEncuesta(@RequestBody Encuesta encuesta){
+    public ResponseEntity<String> addEncuesta(@RequestBody @Valid Encuesta encuesta){
         encuestaServicio.save(encuesta);
         return ResponseEntity.ok("Encuesta agregada");
     }
