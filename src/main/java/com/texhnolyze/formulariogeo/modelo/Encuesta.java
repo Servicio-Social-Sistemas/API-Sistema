@@ -1,5 +1,6 @@
 package com.texhnolyze.formulariogeo.modelo;
 import jakarta.persistence.*;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,10 +22,11 @@ public class Encuesta {
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "encuesta_id")
-    @Size(max = 8)
-    private List<Pregunta> preguntas;
+    @Size(max = 8, message = "La lista de preguntas debe tener como máximo 8 elementos")
+    private List<@Valid  Pregunta> preguntas;
 
     @Embedded
+    @Valid
     private PosicionGeografica posicionGeografica;
 
 }

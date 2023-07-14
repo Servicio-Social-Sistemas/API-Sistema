@@ -1,6 +1,7 @@
 package com.texhnolyze.formulariogeo.modelo;
 
 import jakarta.persistence.*;
+import jakarta.validation.Valid;
 import lombok.Data;
 @Entity
 @Table(name = "preguntas")
@@ -13,7 +14,9 @@ public class Pregunta {
 
     private int numeroPregunta;
 
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "pregunta_id")
+    @Valid
     private Respuesta respuesta;
 }
