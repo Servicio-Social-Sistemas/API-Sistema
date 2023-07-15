@@ -1,6 +1,7 @@
 package com.texhnolyze.formulariogeo.controlador;
 
 import com.texhnolyze.formulariogeo.modelo.Encuesta;
+import com.texhnolyze.formulariogeo.modelo.Pregunta;
 import com.texhnolyze.formulariogeo.servicio.EncuestaServicio;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
@@ -45,5 +46,12 @@ public class EncuestaControlador {
         return ResponseEntity.ok("Encuesta eliminada");
 
     }
+
+    @GetMapping("{id}/preguntas")
+    public ResponseEntity<List<Pregunta>> obtenerPreguntasPorEncuestaId(@PathVariable Long id){
+        return ResponseEntity.ok(encuestaServicio.buscarPreguntasPorEncuestaId(id));
+    }
+
+
 
 }
