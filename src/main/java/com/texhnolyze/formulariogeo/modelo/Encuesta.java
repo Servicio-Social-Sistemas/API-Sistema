@@ -1,4 +1,5 @@
 package com.texhnolyze.formulariogeo.modelo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Size;
@@ -20,10 +21,10 @@ public class Encuesta {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "encuesta_id")
+    @OneToMany(mappedBy = "encuesta", cascade = CascadeType.ALL)
     @Size(max = 8, message = "La lista de preguntas debe tener como máximo 8 elementos")
-    private List<@Valid  Pregunta> preguntas;
+    @JsonManagedReference
+    private List<@Valid Pregunta> preguntas;
 
     @Embedded
     @Valid

@@ -28,6 +28,7 @@ public class EncuestaServicio {
         for (int i = 0; i < preguntas.size(); i++) {
             Pregunta pregunta = preguntas.get(i);
             pregunta.setNumeroPregunta(i + 1);
+            pregunta.setEncuesta(encuesta);
         }
 
         encuestaRespositorio.save(encuesta);
@@ -48,8 +49,8 @@ public class EncuestaServicio {
         return encuestaRespositorio.findAll();
     }
     public Encuesta getEncuestadoById(Long id) {
-        return encuestaRespositorio.findById(id).orElseThrow(()->
-                new RuntimeException("No se encontro la encuesta con id: "+id));
+        return encuestaRespositorio.findById(id)
+                .orElseThrow(()-> new RuntimeException("No se encontro la encuesta con id: "+id));
     }
 
     public void updateEncuestadoById(Long id, Encuesta encuestado) {
@@ -68,6 +69,11 @@ public class EncuestaServicio {
         if (encuestaRespositorio.findById(id).isPresent()) {
             encuestaRespositorio.deleteById(id);
         }
+    }
+
+    public List<Pregunta> buscarPreguntasPorEncuestaId(Long id){
+        Encuesta encuesta = getEncuestadoById(id);
+        return encuesta.getPreguntas();
     }
 
 }

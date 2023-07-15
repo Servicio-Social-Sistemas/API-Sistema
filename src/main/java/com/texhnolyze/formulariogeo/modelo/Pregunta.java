@@ -1,5 +1,6 @@
 package com.texhnolyze.formulariogeo.modelo;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
 import lombok.Data;
@@ -14,6 +15,10 @@ public class Pregunta {
 
     private int numeroPregunta;
 
+    @ManyToOne
+    @JoinColumn(name = "encuesta_id")
+    @JsonBackReference
+    private Encuesta encuesta;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "pregunta_id")
