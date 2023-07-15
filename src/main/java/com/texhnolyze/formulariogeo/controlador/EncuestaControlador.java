@@ -1,7 +1,10 @@
 package com.texhnolyze.formulariogeo.controlador;
 
 import com.texhnolyze.formulariogeo.modelo.Encuesta;
+import com.texhnolyze.formulariogeo.modelo.Pregunta;
 import com.texhnolyze.formulariogeo.servicio.EncuestaServicio;
+import jakarta.validation.Valid;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,12 +21,13 @@ public class EncuestaControlador {
     }
 
     @PostMapping
-    public ResponseEntity<String> addEncuesta(@RequestBody Encuesta encuesta){
+    public ResponseEntity<String> addEncuesta(@RequestBody @Valid Encuesta encuesta){
         encuestaServicio.save(encuesta);
         return ResponseEntity.ok("Encuesta agregada");
     }
 
     @GetMapping
+    @Cacheable("encuestas")
     public ResponseEntity<List<Encuesta>> todasEncuestas() {
         return ResponseEntity.ok(encuestaServicio.findAll());
     }
@@ -44,5 +48,13 @@ public class EncuestaControlador {
         return ResponseEntity.ok("Encuesta eliminada");
 
     }
+
+    @GetMapping("{id}/preguntas")
+    @Cacheable("preguntas")
+    public ResponseEntity<List<Pregunta>> obtenerPreguntasPorEncuestaId(@PathVariable Long id){
+        return ResponseEntity.ok(encuestaServicio.buscarPreguntasPorEncuestaId(id));
+    }
+
+
 
 }
