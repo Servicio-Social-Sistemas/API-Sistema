@@ -4,6 +4,7 @@ import com.texhnolyze.formulariogeo.modelo.Encuesta;
 import com.texhnolyze.formulariogeo.modelo.PosicionGeografica;
 import com.texhnolyze.formulariogeo.modelo.Pregunta;
 import com.texhnolyze.formulariogeo.repositorio.EncuestaRespositorio;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
